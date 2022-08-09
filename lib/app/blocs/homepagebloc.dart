@@ -4,6 +4,10 @@ class HomePageBLoC {
   int _count = 0;
   var _streamController = StreamController<int>();
 
+  static final instance = HomePageBLoC._();
+
+  HomePageBLoC._();
+
   Stream<int> get outCount => _streamController.stream;
 
   increment() {
