@@ -1,8 +1,8 @@
 import 'dart:async';
+import 'package:rxdart/subjects.dart';
 
 class HomePageBLoC {
-  int _count = 0;
-  var _streamController = StreamController<int>();
+  final _streamController = BehaviorSubject<int>.seeded(0);
 
   static final instance = HomePageBLoC._();
 
@@ -11,13 +11,11 @@ class HomePageBLoC {
   Stream<int> get outCount => _streamController.stream;
 
   increment() {
-    _count++;
-    _streamController.sink.add(_count);
+    _streamController.sink.add(_streamController.value + 1);
   }
 
   decrement() {
-    _count--;
-    _streamController.sink.add(_count);
+    _streamController.sink.add(_streamController.value - 1);
   }
 
   dispose() {

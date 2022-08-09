@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
         body: Center(
           child: StreamBuilder<Object>(
               stream: bloc?.outCount,
-              initialData: 0,
               builder: (context, snapshot) {
                 return Text('Valor del contador: ${snapshot.data}');
               }),
