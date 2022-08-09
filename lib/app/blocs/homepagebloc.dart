@@ -1,12 +1,9 @@
 import 'dart:async';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:rxdart/subjects.dart';
 
-class HomePageBLoC {
+class HomePageBLoC extends BlocBase {
   final _streamController = BehaviorSubject<int>.seeded(0);
-
-  static final instance = HomePageBLoC._();
-
-  HomePageBLoC._();
 
   Stream<int> get outCount => _streamController.stream;
 
@@ -18,7 +15,9 @@ class HomePageBLoC {
     _streamController.sink.add(_streamController.value - 1);
   }
 
+  @override
   dispose() {
     _streamController.close();
+    super.dispose();
   }
 }
